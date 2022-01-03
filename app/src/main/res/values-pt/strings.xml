@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recipy</string>
+    <string name="splash_text_description">Integer lacinia nunc vel accumsan finibus. Mauris scelerisque nibh sed nisl suscipit cursus. Suspendisse potenti. In feugiat a lorem non auctor. Nunc luctus metus vel pulvinar accumsan. Quisque in efficitur arcu. Mauris ut sollicitudin est, nec imperdiet urna.</string>
+    <string name="splash_text_product">Get things done with Recipy</string>
+
+    <string name="add_recipe_hint_recipe_name">Nome da receita</string>
+    <string name="add_recipe_hint_recipe_desc">Description</string>
+    <string name="add_recipe_hint_ingredient_qty">Quantidade</string>
+    <string name="add_recipe_hint_ingredient_name">Ingrediente</string>
+
+    <string name="main_text_title">Receitas</string>
+    <string name="main_text_empty_list">Nenhuma receita cadastrada. Você pode inserir uma.</string>
+    <string name="main_text_image_content">Livro de receitas</string>
+    <string name="main_text_add_new_recipe">Adicionar receita</string>
+    <string name="main_text_list_minutes">%s minutos</string>
+
+    <string name="add_recipe_text_name">Entre com o nome da receita</string>
+    <string name="add_recipe_text_time">Entre com o tempo estimado de preparo da receita</string>
+    <string name="add_recipe_text_selected_time">xx minutos</string>
+    <string name="add_recipe_text_ingredients">Adicionar Ingredientes</string>
+    <string name="add_recipe_text_ingredients_list">Lista de Ingredientes</string>
+    <string name="add_recipe_button_remove_selected">Remover Selecionados</string>
+    <string name="add_recipe_text_ingredient_remove_failed">Selecione um ingrediente para remover</string>
+    <string name="add_recipe_text_ingredient_add_failed">Informe o nome e a quantidade</string>
+    <string name="add_recipe_text_ok">Ok</string>
+    <string name="add_recipe_text_recipe_name_failed">Digite o nome da receita</string>
+
+    <string name="add_recipe_button_next">Avançar</string>
+    <string name="add_recipe_button_add_ingredient">Adicionar</string>
+    <string name="add_recipe_button_confirm">Concluir</string>
+    <string name="add_recipe_text_description">Entre com a descrição do preparo da receita</string>
+
+    <string name="recipe_text_duration">Duração</string>
+    <string name="recipe_text_ingredients">Ingredientes</string>
+    <string name="recipe_text_description">Descrição</string>
+    <string name="recipe_text_ingredient_not_found">N/A</string>
+    <string name="recipe_text_recipe">Receita</string>
+
+    <string name="title_activity_settings">Configurações</string>
+    <string name="text_settings_sort_title">Ordernar por</string>
+    <string name="text_settings_sort_category">Ordenação</string>
+    <string name="text_preference_sort_key">sort</string>
+    <string name="network_error">Erro de rede. Não foi possível carregar.</string>
+
+    <string name="dialog_remove_recipe">Remover receita?</string>
+    <string name="dialog_remove_recipe_confirm">Confirmar</string>
+    <string name="dialog_remove_recipe_cancel">Cancelar</string>
+</resources>

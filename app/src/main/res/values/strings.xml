@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Recipy</string>
+    <string name="splash_text_description">Integer lacinia nunc vel accumsan finibus. Mauris scelerisque nibh sed nisl suscipit cursus. Suspendisse potenti. In feugiat a lorem non auctor. Nunc luctus metus vel pulvinar accumsan. Quisque in efficitur arcu. Mauris ut sollicitudin est, nec imperdiet urna.</string>
+    <string name="splash_text_product">Get things done with Recipy</string>
+
+    <string name="add_recipe_hint_recipe_name">Recipe name</string>
+    <string name="add_recipe_hint_recipe_desc">Description</string>
+    <string name="add_recipe_hint_ingredient_qty">Quantity</string>
+    <string name="add_recipe_hint_ingredient_name">Ingredient</string>
+
+    <string name="main_text_title">Recipes</string>
+    <string name="main_text_empty_list">No Recipes Yet. Try adding one.</string>
+    <string name="main_text_image_content">Recipe book</string>
+    <string name="main_text_add_new_recipe">Add new recipe</string>
+    <string name="main_text_list_minutes">%s minutes</string>
+
+    <string name="add_recipe_text_name">Type the recipe name</string>
+    <string name="add_recipe_text_time">Select the estimated time for this recipe</string>
+    <string name="add_recipe_text_selected_time">xx minutes</string>
+    <string name="add_recipe_text_ingredients">Ingredients</string>
+    <string name="add_recipe_text_ingredients_list">Ingredients List</string>
+    <string name="add_recipe_text_ingredient_remove_failed">Select an ingredient for removal</string>
+    <string name="add_recipe_text_ingredient_add_failed">Type the name and the quantity</string>
+    <string name="add_recipe_text_ok">Ok</string>
+    <string name="add_recipe_text_recipe_name_failed">Type the name of the recipe</string>
+
+    <string name="add_recipe_button_next">Next</string>
+    <string name="add_recipe_button_add_ingredient">Add</string>
+    <string name="add_recipe_button_confirm">Ok</string>
+    <string name="add_recipe_text_description">Type the recipe description</string>
+    <string name="add_recipe_button_remove_selected">Remove Selected</string>
+
+    <string name="recipe_text_duration">Duration</string>
+    <string name="recipe_text_ingredients">Ingredients</string>
+    <string name="recipe_text_description">Description</string>
+    <string name="recipe_text_ingredient_not_found">N/A</string>
+    <string name="recipe_text_recipe">Recipe</string>
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="text_settings_sort_title">Sort By</string>
+    <string name="text_settings_sort_category">Sorting</string>
+    <string name="text_preference_sort_key">sort</string>
+    <string name="network_error">Network error. Could not load data.</string>
+
+    <string name="dialog_remove_recipe">Remove recipe?</string>
+    <string name="dialog_remove_recipe_confirm">Confirm</string>
+    <string name="dialog_remove_recipe_cancel">Cancel</string>
+
+</resources>

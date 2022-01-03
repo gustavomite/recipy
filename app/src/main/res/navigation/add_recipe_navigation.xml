@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_item_navigation"
+    app:startDestination="@id/addRecipeFragmentPart1">
+
+    <fragment
+        android:id="@+id/addRecipeFragmentPart1"
+        android:name="br.com.gmt.ui.additem.AddRecipeFragmentPart1"
+        android:label="fragment_add_recipe_part1"
+        tools:layout="@layout/fragment_add_recipe_part1" >
+        <action
+            android:id="@+id/action_addRecipeFragmentPart1_to_addRecipeFragmentPart2"
+            app:destination="@id/addRecipeFragmentPart2"
+            app:enterAnim="@anim/slide_out_right"
+            app:exitAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_in_right"
+            app:popUpTo="@id/addRecipeFragmentPart1" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecipeFragmentPart2"
+        android:name="br.com.gmt.ui.additem.AddRecipeFragmentPart2"
+        android:label="fragment_add_recipe_part2"
+        tools:layout="@layout/fragment_add_recipe_part2" >
+        <action
+            android:id="@+id/action_addRecipeFragmentPart2_to_addRecipeFragmentPart3"
+            app:destination="@id/addRecipeFragmentPart3"
+            app:enterAnim="@anim/slide_out_right"
+            app:exitAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_in_right"
+            app:popUpTo="@id/addRecipeFragmentPart2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecipeFragmentPart3"
+        android:name="br.com.gmt.ui.additem.AddRecipeFragmentPart3"
+        android:label="fragment_add_recipe_part3"
+        tools:layout="@layout/fragment_add_recipe_part3" />
+</navigation>

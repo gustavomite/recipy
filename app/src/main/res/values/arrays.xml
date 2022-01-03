@@ -1,0 +1,15 @@
+<resources>
+    <string-array name="sort_entries">
+        <item name="1">Name ascending</item>
+        <item name="2">Name descending</item>
+        <item name="3">Time ascending</item>
+        <item name="4">Time descending</item>
+    </string-array>
+
+    <string-array name="sort_values">
+        <item name="1">name_asc</item>
+        <item name="2">name_desc</item>
+        <item name="3">time_asc</item>
+        <item name="4">time_desc</item>
+    </string-array>
+</resources>

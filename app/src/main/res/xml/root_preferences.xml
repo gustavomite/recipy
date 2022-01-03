@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/text_settings_sort_category">
+        <ListPreference
+            android:entries="@array/sort_entries"
+            android:entryValues="@array/sort_values"
+            android:key="@string/text_preference_sort_key"
+            android:title="@string/text_settings_sort_title"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="name_asc"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
