@@ -8,6 +8,16 @@
     android:background="@color/Terciary"
     tools:context=".ui.additem.AddRecipeFragmentPart1">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textViewRecipeName"
@@ -108,7 +118,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:transitionName="add_recipe_profile2"/>
 
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

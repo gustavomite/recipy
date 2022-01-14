@@ -18,26 +18,25 @@ class AddRecipeActivity : AppCompatActivity() {
     lateinit var viewModel: AddRecipeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // get the view model - needs to be before setContentView to handle screen rotation
+        viewModel = ViewModelProvider(this)[AddRecipeViewModel::class.java]
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_recipe)
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null) {}
 //            original code
 //            supportFragmentManager.beginTransaction()
 //                .replace(R.id.container, AddRecipeFragmentPart1.newInstance())
 //                .commitNow()
 
-                // get the view model
-            viewModel = ViewModelProvider(this)[AddRecipeViewModel::class.java]
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.add_recipe_fragment_view) as NavHostFragment
+        NavigateControl.navController = navHostFragment.navController
 
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.add_recipe_fragment_view) as NavHostFragment
-            NavigateControl.navController = navHostFragment.navController
-
-            viewModel.done.observe(this, {
-                if (it == true) {
-                    finishAddRecipe()
-                }
-            })
-        }
+        viewModel.done.observe(this, {
+            if (it == true) {
+                finishAddRecipe()
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

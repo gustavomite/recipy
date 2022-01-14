@@ -1,6 +1,7 @@
 package br.com.gmt.ui.main
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.ActivityOptions
 import android.app.Dialog
 import android.content.DialogInterface
@@ -27,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModel
@@ -47,6 +49,9 @@ class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClick
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // adjust screen according to orientation
+        onConfigurationChanged(resources.configuration)
 
         recyclerView = findViewById<RecyclerView>(R.id.recipesRecyclerView)
         recyclerView.adapter = RecipeAdapterWithClickListener(this, RecipeList, this)
@@ -135,5 +140,21 @@ class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClick
     override fun onLongClick(data: Recipe) {
         val dialog = RemoveRecipeDialogFragment(recyclerView, data)
         dialog.show(supportFragmentManager, "RemoveRecipeDialogFragment")
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        // needs this on manifest
+        // android:configChanges="orientation|screenSize"
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation === Configuration.ORIENTATION_LANDSCAPE) {
+            val linearLayout = findViewById<LinearLayout>(R.id.imageLinearLayout)
+            linearLayout.visibility = View.GONE
+        } else if (newConfig.orientation === Configuration.ORIENTATION_PORTRAIT) {
+            val linearLayout = findViewById<LinearLayout>(R.id.imageLinearLayout)
+            linearLayout.visibility = View.VISIBLE
+        }
     }
 }
