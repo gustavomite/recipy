@@ -1,9 +1,9 @@
-package br.com.gmt
+package br.com.gmt.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.gmt.Util.Func.startActivity
-import br.com.gmt.ui.main.MainActivity
+import br.com.gmt.R
+import br.com.gmt.util.Func.startActivity
 import kotlinx.coroutines.*
 
 

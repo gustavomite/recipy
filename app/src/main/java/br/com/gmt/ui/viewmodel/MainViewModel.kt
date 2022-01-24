@@ -1,7 +1,5 @@
 package br.com.gmt.ui.main
 
-import android.content.Context
-import android.widget.TextView
 import androidx.lifecycle.*
 import br.com.gmt.R
 import br.com.gmt.RecipyApp.Companion.context
@@ -11,10 +9,8 @@ import br.com.gmt.data.RecipeList
 import br.com.gmt.db.IngredientEntity
 import br.com.gmt.db.IngredientRepository
 import br.com.gmt.network.RecipeApi
-import br.com.gmt.network.VolleyApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -79,7 +75,7 @@ class MainViewModel(var repository: IngredientRepository): ViewModel() {
                 val listIngredients = it.listIngredients.split(' ')
                 listIngredients.forEach { ingr ->
                     // map random text to ingredient: first letter code represents the ingredient index and length represents the quantity
-                    rec.ingredient[ingr[0].toChar().code - 97] = ingr.length.toString()
+                    rec.ingredientList[ingr[0].toChar().code - 97] = ingr.length.toString()
                 }
                 rec.time = it.time
                 RecipeList.add(rec)
@@ -91,9 +87,8 @@ class MainViewModel(var repository: IngredientRepository): ViewModel() {
         }
     }
 
-    fun checkResort(): Boolean {
-        if (RecipeList.sortOrder.isNullOrBlank())
-        {
+    fun checkSortOrder(): Boolean {
+        if (RecipeList.checkSortOrder()) {
             viewModelScope.launch {
                 RecipeList.reorder()
                 // postvalue is used to make sure it is called after the caller of this function already showed the progress bar

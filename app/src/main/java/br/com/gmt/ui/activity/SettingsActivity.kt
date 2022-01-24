@@ -1,6 +1,5 @@
-package br.com.gmt.ui.main
+package br.com.gmt.ui.activity
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +7,7 @@ import androidx.preference.PreferenceFragmentCompat
 import br.com.gmt.R
 import androidx.core.app.NavUtils
 import br.com.gmt.RecipyApp
-import br.com.gmt.Util.Func.getPrefs
+import br.com.gmt.util.Func.getPrefs
 import br.com.gmt.data.RecipeList
 
 
@@ -25,17 +24,6 @@ class SettingsActivity : AppCompatActivity() {
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-    }
-
-    override fun onPause() {
-        // if there was a change on sort order, prepare resort
-
-        val key = RecipyApp.context.getString(R.string.text_preference_sort_key)
-        val default = RecipyApp.context.resources.getStringArray(R.array.sort_values)[0]
-        if (getPrefs().getString(key, default)!!.compareTo(RecipeList.sortOrder) != 0) {
-            RecipeList.sortOrder = ""
-        }
-        super.onPause()
     }
 
     // code below is necessary to go back when back view is clicked

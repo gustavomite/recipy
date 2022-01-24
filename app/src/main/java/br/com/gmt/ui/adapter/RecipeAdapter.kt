@@ -1,4 +1,4 @@
-package br.com.gmt.ui.adaptors
+package br.com.gmt.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,18 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import br.com.gmt.ui.main.MainActivity
+import br.com.gmt.ui.activity.MainActivity
 import br.com.gmt.R
 import br.com.gmt.data.Recipe
 
 /**
      * Adapter for the [RecyclerView] in [MainActivity]. Displays [Recipe] data object.
      */
-    class RecipeAdapterWithClickListener(
+    class RecipeAdapter(
         private val context: Context,
         private val dataset: ArrayList<Recipe>,
         private val clickCallback: OnClickCallback
-    ) : RecyclerView.Adapter<RecipeAdapterWithClickListener.ViewHolder>() {
+    ) : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
         /**
          * Create new views (invoked by the layout manager)
          */

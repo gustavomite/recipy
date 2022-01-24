@@ -1,18 +1,12 @@
-package br.com.gmt.ui.additem
+package br.com.gmt.ui.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.*
 import br.com.gmt.data.IngredientList
 import br.com.gmt.data.Recipe
 import br.com.gmt.data.RecipeList
-import br.com.gmt.db.IngredientEntity
-import br.com.gmt.db.IngredientRepository
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 class AddRecipeViewModel : ViewModel() {
-    private var recipe = Recipe("")
-    public var ingredientList = mutableMapOf<Int, String>()
+    var recipe = Recipe("")
 
     private val _done = MutableLiveData(false)
     val done: LiveData<Boolean>
@@ -20,11 +14,8 @@ class AddRecipeViewModel : ViewModel() {
 
     fun addIngredient(ingr: String, qty: String) {
         // find the ingredient key from the entity
-        var id = IngredientList.getId(ingr)
-        if (id == -1) {
-            id = IngredientList.newIngredient(ingr)
-        }
-        ingredientList[id] = qty
+        var id = IngredientList.newIngredient(ingr)
+        recipe.ingredientList[id] = qty
     }
 
     fun setName(name: String) {
@@ -42,17 +33,15 @@ class AddRecipeViewModel : ViewModel() {
         _done.postValue(true)
     }
 
-    fun addIngredientFinish() {
-        ingredientList.forEach { ingr ->
-            recipe.ingredient[ingr.key] = ingr.value
-        }
-    }
-
     fun getIngredientsFromDB(): List<String> {
         val listRet = mutableListOf<String>()
         IngredientList.allIngredients().forEach {
             listRet.add(it.name)
         }
         return listRet
+    }
+
+    init {
+        IngredientList.confirmInsert = false
     }
 }

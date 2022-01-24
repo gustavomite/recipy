@@ -1,4 +1,4 @@
-package br.com.gmt.ui.recipe
+package br.com.gmt.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.TextView
 import br.com.gmt.R
 import br.com.gmt.data.IngredientList
 import br.com.gmt.data.Recipe
+import br.com.gmt.data.RecipeList
 import java.util.*
 
 class RecipeActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -18,7 +19,7 @@ class RecipeActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setContentView(R.layout.activity_recipe)
 
         val bundle = intent.extras
-        val recipe: Recipe? = bundle!!.getBundle("bundle")!!.getParcelable("data")
+        val recipe = RecipeList[bundle?.getInt("index") ?: 0]
 
         tts = TextToSpeech(this, this)
 
@@ -32,8 +33,8 @@ class RecipeActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             textDuration.text = String.format(resources.getString(R.string.main_text_list_minutes), recipe.time)
 
             var ingredients = String()
-            recipe.ingredient.forEach {
-                ingredients += "- ${IngredientList.ingredientNameFromId(it.key)} (${it.value})\n"
+            recipe.ingredientList.forEach {
+                ingredients += "- ${IngredientList.getName(it.key)} (${it.value})\n"
             }
             if (ingredients.isNotEmpty())
                 ingredients = ingredients.subSequence(0, ingredients.length-1).toString()

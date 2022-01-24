@@ -1,16 +1,13 @@
-package br.com.gmt.Util
+package br.com.gmt.util
 
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.preference.PreferenceManager
 import br.com.gmt.RecipyApp
-import br.com.gmt.Util.Func.startActivity
-import br.com.gmt.ui.additem.AddRecipeActivity
 
 object Func {
     fun Activity.startActivity(activity: AppCompatActivity, bundle: Bundle = Bundle(), flags: Int = Intent.FLAG_ACTIVITY_NEW_TASK) =
@@ -23,7 +20,7 @@ object Func {
                 this@startActivityTransition,
                 view, profile
             )
-            intent.putExtra("bundle", bundle)
+            intent.putExtras(bundle)
 
             val bundleWithOptions = options.toBundle()
             startActivity(

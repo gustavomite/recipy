@@ -1,6 +1,5 @@
-package br.com.gmt.ui.adaptors
+package br.com.gmt.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,9 @@ import br.com.gmt.R
 import br.com.gmt.data.IngredientList
 import br.com.gmt.data.Recipe
 
-class IngredientAdapterWithClickListener(
-    private val context: Context,
-    private val dataset: MutableMap<Int, String>
-    ) : RecyclerView.Adapter<IngredientAdapterWithClickListener.ViewHolder>() {
+class IngredientAdapter(
+    private val recipe: Recipe
+    ) : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
         val selected = mutableMapOf<Int, Boolean>()
 
         /**
@@ -32,9 +30,9 @@ class IngredientAdapterWithClickListener(
          * Replace the contents of a view (invoked by the layout manager)
          */
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val key: Int = dataset.keys.toList()[position]
-            val valueForKey = dataset[key]
-            holder.textTitle.text = IngredientList.ingredientNameFromId(key)
+            val key: Int = recipe.ingredientList.keys.toList()[position]
+            val valueForKey = recipe.ingredientList[key]
+            holder.textTitle.text = IngredientList.getName(key)
             holder.textQty.text = valueForKey.toString()
             holder.checkBox.isChecked = false
         }
@@ -42,13 +40,14 @@ class IngredientAdapterWithClickListener(
         /**
          * Return the size of your dataset (invoked by the layout manager)
          */
-        override fun getItemCount() = dataset.size
+        override fun getItemCount() = recipe.ingredientList.size
 
         fun removeSelected(): Int {
             var count = 0
             selected.forEach {
                 if (it.value) {
-                    dataset.remove(it.key)
+                    IngredientList.remove(it.key)
+                    recipe.ingredientList.remove(it.key)
                     count++
                 }
             }

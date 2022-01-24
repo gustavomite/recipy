@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import br.com.gmt.R
+import br.com.gmt.data.IngredientList
+import br.com.gmt.ui.activity.AddRecipeActivity
+import br.com.gmt.ui.viewmodel.AddRecipeViewModel
 import com.google.android.material.button.MaterialButton
 
 class AddRecipeFragmentPart3 : Fragment() {
@@ -27,6 +30,7 @@ class AddRecipeFragmentPart3 : Fragment() {
         val buttonConfirm = layoutView.findViewById<MaterialButton>(R.id.confirmButton)
         val descriptionEdit = layoutView.findViewById<EditText>(R.id.editDescription)
         buttonConfirm.setOnClickListener {
+            IngredientList.confirmInsert = true
             viewModel.setDescription(descriptionEdit.text.toString())
         }
 

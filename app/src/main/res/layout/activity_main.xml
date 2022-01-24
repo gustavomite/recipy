@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/Alternate"
     android:id="@+id/mainConstraintLayout"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <TextView
         android:id="@+id/recipeListTextView"
@@ -69,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLinearLayout"
         app:layout_constraintVertical_bias="0.0"
-        android:transitionName="recipe_profile">
+        android:transitionName="@string/transition_profile_recipe">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -88,7 +88,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@color/white"
-        android:transitionName="add_recipe_profile"/>
+        android:transitionName="@string/transition_profile_add_recipe"/>
 
     <TextView
         android:id="@+id/noRecipeTextView"

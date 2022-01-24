@@ -6,20 +6,20 @@ import android.os.Parcelable
 class Recipe (var name: String): Parcelable {
     var description = ""
     var time = 0
-    var ingredient = mutableMapOf<Int, String>()
+    var ingredientList = mutableMapOf<Int, String>()
 
     constructor(parcel: Parcel) : this(parcel.readString()!!) {
         description = parcel.readString()!!
         time = parcel.readInt()
-        ingredient = mutableMapOf()
-        parcel.readMap(ingredient, String::class.java.classLoader)
+        ingredientList = mutableMapOf()
+        parcel.readMap(ingredientList, String::class.java.classLoader)
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(description)
         parcel.writeInt(time)
-        parcel.writeMap(ingredient)
+        parcel.writeMap(ingredientList)
     }
 
     override fun describeContents(): Int {

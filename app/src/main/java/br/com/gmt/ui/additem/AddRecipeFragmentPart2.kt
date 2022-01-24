@@ -8,15 +8,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
-import androidx.core.view.ViewCompat
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import br.com.gmt.R
-import br.com.gmt.RecipyApp
-import br.com.gmt.Util.NavigateControl
-import br.com.gmt.db.IngredientEntity
-import br.com.gmt.db.IngredientRoomDatabase
-import br.com.gmt.ui.adaptors.IngredientAdapterWithClickListener
+import br.com.gmt.util.NavigateControl
+import br.com.gmt.data.IngredientList
+import br.com.gmt.ui.activity.AddRecipeActivity
+import br.com.gmt.ui.adapter.IngredientAdapter
+import br.com.gmt.ui.viewmodel.AddRecipeViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 
@@ -38,41 +36,39 @@ class AddRecipeFragmentPart2 : Fragment() {
         val recyclerView = layoutView.findViewById<RecyclerView>(R.id.ingredientsRecyclerView)
         val buttonAdd = layoutView.findViewById<MaterialButton>(R.id.buttonAddIngredient)
         val buttonRemove = layoutView.findViewById<MaterialButton>(R.id.buttonRemoveIngredient)
-        val textIngredient = layoutView.findViewById<AutoCompleteTextView>(R.id.editIngredientName)
+        val autoCompleteTextIngredient = layoutView.findViewById<AutoCompleteTextView>(R.id.editIngredientName)
         val textQty = layoutView.findViewById<EditText>(R.id.editIngredientQty)
 
         // button next
         buttonNext.setOnClickListener {
-            viewModel.addIngredientFinish()
             NavigateControl.navigateUsingDirection(AddRecipeFragmentPart2Directions.actionAddRecipeFragmentPart2ToAddRecipeFragmentPart3())
         }
 
         // set adapter to ingredient list
-        recyclerView.adapter = IngredientAdapterWithClickListener(layoutView.context, viewModel.ingredientList)
+        recyclerView.adapter = IngredientAdapter(viewModel.recipe)
 
-        // set adapter to ingredient name
-        val items = viewModel.getIngredientsFromDB()
-        val adapter = ArrayAdapter(requireContext(), R.layout.menu_ingredient_item, items)
-        textIngredient.setAdapter(adapter)
+        // set ingredients list to adapter
+        val adapter = ArrayAdapter(requireContext(), R.layout.menu_ingredient_item, IngredientList.getNames())
+        autoCompleteTextIngredient.setAdapter(adapter)
 
         // new ingredient
         buttonAdd.setOnClickListener {
-            val ingr = textIngredient.text.toString()
+            val ingr = autoCompleteTextIngredient.text.toString()
 
-            if (textIngredient.text.isNullOrBlank() || textQty.text.isNullOrBlank()) {
+            if (autoCompleteTextIngredient.text.isNullOrBlank() || textQty.text.isNullOrBlank()) {
                 Snackbar.make(recyclerView, getString(R.string.add_recipe_text_ingredient_add_failed), Snackbar.LENGTH_SHORT)
                     .setAction(getString(R.string.add_recipe_text_ok)) {}
                     .show()
             } else {
 
-                val size = viewModel.ingredientList.size
+                val size = viewModel.recipe.ingredientList.size
                 viewModel.addIngredient(ingr, textQty.text.toString())
-                textIngredient.requestFocus()
+                autoCompleteTextIngredient.requestFocus()
 
-                textIngredient.text.clear()
+                autoCompleteTextIngredient.text.clear()
                 textQty.text.clear()
 
-                if (size != viewModel.ingredientList.size) {
+                if (size != viewModel.recipe.ingredientList.size) {
                     recyclerView.adapter!!.notifyItemInserted(size)
                 }
             }
@@ -80,7 +76,7 @@ class AddRecipeFragmentPart2 : Fragment() {
 
         // remove ingredient
         buttonRemove.setOnClickListener {
-            val removed = (recyclerView.adapter as IngredientAdapterWithClickListener).removeSelected()
+            val removed = (recyclerView.adapter as IngredientAdapter).removeSelected()
 
             if (removed == 0) {
                 Snackbar.make(recyclerView, getString(R.string.add_recipe_text_ingredient_remove_failed), Snackbar.LENGTH_SHORT)

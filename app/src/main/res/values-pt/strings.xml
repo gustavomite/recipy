@@ -46,4 +46,9 @@
     <string name="dialog_remove_recipe">Remover receita?</string>
     <string name="dialog_remove_recipe_confirm">Confirmar</string>
     <string name="dialog_remove_recipe_cancel">Cancelar</string>
+
+    <string name="transition_profile_recipe">recipe_profile</string>
+    <string name="transition_profile_add_recipe">add_recipe_profile</string>
+    <string name="transition_profile_add_recipe2">add_recipe_profile2</string>
+    <string name="transition_profile_add_recipe3">add_recipe_profile3</string>
 </resources>

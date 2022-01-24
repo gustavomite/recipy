@@ -1,19 +1,12 @@
-package br.com.gmt.Util
+package br.com.gmt.util
 
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.FragmentNavigator
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import br.com.gmt.R
-import br.com.gmt.ui.additem.AddRecipeFragmentPart1
-import br.com.gmt.ui.additem.AddRecipeFragmentPart1Directions
 
 object NavigateControl {
     lateinit var navController: NavController

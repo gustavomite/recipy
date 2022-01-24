@@ -1,17 +1,15 @@
-package br.com.gmt.ui.additem
+package br.com.gmt.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import br.com.gmt.R
-import br.com.gmt.RecipyApp
-import br.com.gmt.Util.NavigateControl
+import br.com.gmt.data.IngredientList
+import br.com.gmt.util.NavigateControl
 import br.com.gmt.data.Recipe
-import br.com.gmt.ui.main.MainViewModel
+import br.com.gmt.ui.viewmodel.AddRecipeViewModel
 
 class AddRecipeActivity : AppCompatActivity() {
     var recipe = Recipe("")
@@ -23,15 +21,12 @@ class AddRecipeActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_recipe)
-        if (savedInstanceState == null) {}
-//            original code
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, AddRecipeFragmentPart1.newInstance())
-//                .commitNow()
 
+        // prepare navigation between fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.add_recipe_fragment_view) as NavHostFragment
         NavigateControl.navController = navHostFragment.navController
 
+        // observe if recipe is confirmed
         viewModel.done.observe(this, {
             if (it == true) {
                 finishAddRecipe()
@@ -53,5 +48,4 @@ class AddRecipeActivity : AppCompatActivity() {
         // finish with transition
         supportFinishAfterTransition()
     }
-
 }

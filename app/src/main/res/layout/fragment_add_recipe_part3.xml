@@ -29,7 +29,7 @@
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:transitionName="add_recipe_profile3"
+                android:transitionName="@string/transition_profile_add_recipe3"
                 app:layout_constraintBottom_toTopOf="@+id/layoutRecipeDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

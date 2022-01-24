@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.view.ViewCompat
-import androidx.navigation.Navigation
 import br.com.gmt.R
-import br.com.gmt.Util.NavigateControl
+import br.com.gmt.util.NavigateControl
+import br.com.gmt.ui.activity.AddRecipeActivity
+import br.com.gmt.ui.viewmodel.AddRecipeViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
@@ -32,7 +32,7 @@ class AddRecipeFragmentPart1 : Fragment() {
         val minutesText = layoutView.findViewById<TextView>(R.id.textViewSelectedTime)
 
         slider.addOnChangeListener { _, value, _ ->
-            minutesText.text = String.format(resources.getString(R.string.main_text_list_minutes), value.toInt().toString())
+            minutesText.text = String.format( resources.getString(R.string.main_text_list_minutes), value.toInt().toString())
         }
         slider.value = 5F
 

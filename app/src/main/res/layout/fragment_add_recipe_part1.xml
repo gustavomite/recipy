@@ -33,7 +33,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/layoutRecipeName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:transitionName="add_recipe_profile"/>
+                android:transitionName="@string/transition_profile_add_recipe"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutRecipeName"
@@ -116,7 +116,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:transitionName="add_recipe_profile2"/>
+                android:transitionName="@string/transition_profile_add_recipe2"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

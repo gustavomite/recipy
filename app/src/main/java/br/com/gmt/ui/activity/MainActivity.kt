@@ -1,45 +1,32 @@
-package br.com.gmt.ui.main
+package br.com.gmt.ui.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.ActivityOptions
-import android.app.Dialog
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import br.com.gmt.R
 import br.com.gmt.RecipyApp.Companion.context
-import br.com.gmt.ui.recipe.RecipeActivity
-import br.com.gmt.Util.Func.startActivity
+import br.com.gmt.util.Func.startActivity
 import br.com.gmt.data.Recipe
 import br.com.gmt.data.RecipeList
-import br.com.gmt.ui.adaptors.RecipeAdapterWithClickListener
-import br.com.gmt.ui.additem.AddRecipeActivity
+import br.com.gmt.ui.adapter.RecipeAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-import android.content.Intent
 import android.content.res.Configuration
 import androidx.activity.viewModels
-import androidx.core.app.ActivityOptionsCompat
-import androidx.lifecycle.ViewModel
 import br.com.gmt.RecipyApp
-import br.com.gmt.Util.Func.startActivityTransition
 import br.com.gmt.data.IngredientList
-import br.com.gmt.db.IngredientRepository
-import br.com.gmt.ui.additem.AddRecipeViewModel
+import br.com.gmt.util.Func.startActivityTransition
+import br.com.gmt.ui.main.*
 
 
-class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClickCallback {
+class MainActivity : AppCompatActivity(), RecipeAdapter.OnClickCallback {
     val viewModel: MainViewModel by viewModels {
         MainActivityViewModelFactory((application as RecipyApp).repository)
     }
@@ -54,7 +41,7 @@ class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClick
         onConfigurationChanged(resources.configuration)
 
         recyclerView = findViewById<RecyclerView>(R.id.recipesRecyclerView)
-        recyclerView.adapter = RecipeAdapterWithClickListener(this, RecipeList, this)
+        recyclerView.adapter = RecipeAdapter(this, RecipeList, this)
 
         // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -101,13 +88,15 @@ class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClick
             }
         })
 
+        // new recipe button
         val fabNewRecipe = findViewById<FloatingActionButton>(R.id.newRecipeFloatingActionButton)
         fabNewRecipe.setOnClickListener {
-            startActivityTransition(AddRecipeActivity(), fabNewRecipe, "add_recipe_profile")
+            startActivityTransition(AddRecipeActivity(), fabNewRecipe, getString(R.string.transition_profile_add_recipe))
         }
     }
 
     fun checkEmpty() {
+        // if list is empty, show message to insert new recipe
         val alertView = findViewById<TextView>(R.id.noRecipeTextView)
 
         if (recyclerView.adapter!!.itemCount == 0)
@@ -118,11 +107,15 @@ class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClick
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
+        // called when user comes back to main activity
         super.onResume()
 
-        viewModel.insertIngredientsToDB()
+        // if new recipe was added, insert ingredients to db
+        if (IngredientList.confirmInsert)
+            viewModel.insertIngredientsToDB()
 
-        if (viewModel.checkResort()) {
+        // check if we need to resort our items
+        if (viewModel.checkSortOrder()) {
             val progressBar = findViewById<ProgressBar>(R.id.progressBar)
             progressBar.visibility = View.VISIBLE
         }
@@ -132,18 +125,21 @@ class MainActivity : AppCompatActivity(), RecipeAdapterWithClickListener.OnClick
 
     override fun onClick(data: Recipe) {
         // transition using a shared element (defined in the xml)
+        val index = RecipeList.indexOf(data)
         val bundle = Bundle()
-        bundle.putParcelable("data", data)
-        startActivityTransition(RecipeActivity(), recyclerView, "recipe_profile", bundle)
+        bundle.putInt("index", index)
+        startActivityTransition(RecipeActivity(), recyclerView, getString(R.string.transition_profile_recipe), bundle)
     }
 
     override fun onLongClick(data: Recipe) {
+        // confirm if user wants to remove a recipe
         val dialog = RemoveRecipeDialogFragment(recyclerView, data)
         dialog.show(supportFragmentManager, "RemoveRecipeDialogFragment")
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+        // orientation changed
 
         // needs this on manifest
         // android:configChanges="orientation|screenSize"
